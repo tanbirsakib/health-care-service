@@ -1,9 +1,11 @@
 import './App.css';
-
+import Services from './pages/Home/Services/Services';
 function App() {
+
   return (
     <div className="App">
-     <h1>This is app js</h1>
+     <p className="text-red-600 font-bold">health care</p>
+     <Services></Services>
     </div>
   );
 }
