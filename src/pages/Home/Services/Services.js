@@ -5,7 +5,7 @@ import Service from "../Service/Service";
 const Services = () => {
 const [allServices] = useHealthContexts();
 //  const [allServices] =  useServices();
- console.log("services",allServices)
+//  console.log("services",allServices)
   return (
  <div className="mt-5">
   <h2 className="lg:text-4xl md:text-3xl sm:text-2xl text-center text-green-600">Our Services</h2>

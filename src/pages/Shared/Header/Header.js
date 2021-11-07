@@ -32,7 +32,7 @@ const Header = () => {
           <li>
             <NavLink to="/home">
               <span>{customer}</span>
-              <span>Customer</span>
+              <span>Subscription</span>
             </NavLink>
           </li>
           <li>
