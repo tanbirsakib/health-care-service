@@ -21,7 +21,7 @@ const Header = () => {
         <span className="text-2xl mr-1">{logo}</span>
         <p className="text-2xl font-bold ">Health Freak</p>
       </div>
-      <div >
+      <div>
         <ul className="flex justify text-xl">
           <li>
             <NavLink to="/home">
@@ -30,9 +30,9 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/home">
+            <NavLink to="/faq">
               <span>{customer}</span>
-              <span>Subscription</span>
+              <span>FAQ</span>
             </NavLink>
           </li>
           <li>
