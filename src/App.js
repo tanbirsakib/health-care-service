@@ -4,6 +4,7 @@ import HealthProvider from "./context/HealthProvider";
 import About from "./pages/About/About";
 import Faq from "./pages/FAQ/Faq";
 import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import ServiceDetails from "./pages/ServiceDetails/ServiceDetails";
 import Footer from "./pages/Shared/Footer/Footer";
@@ -29,6 +30,9 @@ function App() {
             </Route>
             <Route path="/about">
               <About></About>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
             </Route>
             <Route path="*">
               <NotFound></NotFound>
