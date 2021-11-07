@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Header.css";
 const logo = <FontAwesomeIcon icon={faCapsules}></FontAwesomeIcon>;
 const home = <FontAwesomeIcon icon={faHome}></FontAwesomeIcon>;
@@ -17,10 +17,12 @@ const signIn = <FontAwesomeIcon icon={faSignInAlt}></FontAwesomeIcon>;
 const Header = () => {
   return (
     <div className="header flex justify-between p-4 bg-white border-b shadow">
-      <div className="flex text-green-500">
+    <Link to="/home">
+    <div className="flex text-green-500">
         <span className="text-2xl mr-1">{logo}</span>
         <p className="text-2xl font-bold ">Health Freak</p>
       </div>
+    </Link>
       <div>
         <ul className="flex justify text-xl">
           <li>
