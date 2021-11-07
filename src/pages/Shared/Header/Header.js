@@ -1,9 +1,9 @@
 import {
-    faCapsules,
-    faHome,
-    faPen,
-    faSignInAlt,
-    faUserSecret
+  faCapsules,
+  faHome,
+  faPen,
+  faSignInAlt,
+  faUserSecret
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
@@ -36,13 +36,13 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/home">
+            <NavLink to="/about">
               <span>{pen}</span>
               <span>About US</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to="/home">
+            <NavLink to="/login">
               <span>{signIn}</span>
               <span>Log In</span>
             </NavLink>

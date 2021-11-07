@@ -1,16 +1,22 @@
 import {
-    faCalendarAlt,
-    faMoneyCheckAlt
+  faCalendarAlt,
+  faMoneyCheckAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { useHistory } from "react-router";
 
+// creating font elements 
 const calender = <FontAwesomeIcon icon={faCalendarAlt}></FontAwesomeIcon>;
 const money = <FontAwesomeIcon icon={faMoneyCheckAlt}></FontAwesomeIcon>;
 
 const Service = (props) => {
   const { name, img, price, subscription } = props.service;
-  console.log(props);
+  //service button handler
+  const history = useHistory();
+const handleServiceDetails = ()=>{
+  history.push('/service');
+}
   return (
     <div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal  w-full lg:max-w-full lg:flex  hover:shadow-xl border rounded">
       <div className="mb-8">
@@ -23,19 +29,19 @@ const Service = (props) => {
       <div className="flex flex-row justify-between p-1">
         <p className="border p-1 rounded font-bolder text-xl">
           Subscription : {subscription}{" "}
-          <span className="text-blue-600">{calender}</span>
+          <span className="text-green-600">{calender}</span>
         </p>
         <p className="border p-1 rounded font-bolder text-xl">
           Price : {price} <span className="text-red-600">{money}</span>
         </p>
       </div>
-      <button className="flex items-center justify-center border p-2 hover:bg-blue-400 ">
+      <button onClick={handleServiceDetails} className="flex items-center justify-center border p-2 hover:shadow-lg hover:text-green-600">
         <img
           className="w-10 h-10 rounded-full"
           src={img}
           alt="Avatar of Writer"
         />
-        <p className="text-gray-900 leading-none text-xl ">Take the service</p>
+        <p className="leading-none text-xl ">Take the service</p>
       </button>
     </div>
   );

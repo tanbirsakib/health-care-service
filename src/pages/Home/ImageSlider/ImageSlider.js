@@ -41,6 +41,8 @@ const ImageSlider = () => {
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
         <span className="">Next</span>
       </button>
+      <br />
+      <br />
     </div>
   );
 };

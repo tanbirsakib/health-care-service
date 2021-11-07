@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import useHealthContexts from "../../../hooks/useHealthContexts";
 import Service from "../Service/Service";
 
 const Services = () => {
-  const [services, setServices] = useState([]);
-  useEffect(() => {
-    fetch("/services.json")
-      .then((res) => res.json())
-      .then((data) => setServices(data));
-  }, []);
+const [allServices] = useHealthContexts();
+//  const [allServices] =  useServices();
+ console.log("services",allServices)
   return (
-    <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1  gap-8 m-8">
-      {services.map((service) => (
+ <div className="mt-5">
+  <h2 className="lg:text-4xl md:text-3xl sm:text-2xl text-center text-green-600">Our Services</h2>
+      <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1  gap-8 m-8">
+      {allServices.map((service) => (
         <Service key={service.id} service={service}></Service>
       ))}
     </div>
+ </div>
   );
 };
 
