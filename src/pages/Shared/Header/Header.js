@@ -8,6 +8,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import useFirebase from "../../../hooks/useFirebase";
 import "./Header.css";
 const logo = <FontAwesomeIcon icon={faCapsules}></FontAwesomeIcon>;
 const home = <FontAwesomeIcon icon={faHome}></FontAwesomeIcon>;
@@ -15,6 +16,7 @@ const customer = <FontAwesomeIcon icon={faUserSecret}></FontAwesomeIcon>;
 const pen = <FontAwesomeIcon icon={faPen}></FontAwesomeIcon>;
 const signIn = <FontAwesomeIcon icon={faSignInAlt}></FontAwesomeIcon>;
 const Header = () => {
+  const {user,logOut} = useFirebase()
   return (
     <div className="header flex justify-between p-4 bg-white border-b shadow">
     <Link to="/home">
@@ -43,11 +45,13 @@ const Header = () => {
               <span>About US</span>
             </NavLink>
           </li>
+          {user.uid && <li>{user.displayName}</li>}
+          {/* {user.uid && <li>{name}</li>} */}
           <li>
-            <NavLink to="/login">
+           {user.uid? <NavLink onClick={logOut} to="/login">
               <span>{signIn}</span>
-              <span>Log In</span>
-            </NavLink>
+                   Log Out
+            </NavLink> : <NavLink to="/login"><span>{signIn}</span> Log In </NavLink>}
           </li>
         </ul>
       </div>

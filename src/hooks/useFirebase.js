@@ -1,21 +1,40 @@
 import {
-    createUserWithEmailAndPassword,
-    getAuth,
-    sendEmailVerification, signInWithEmailAndPassword,
-    updateProfile
+  createUserWithEmailAndPassword,
+  getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile
 } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import initFirebase from "../Firebase/firebase.init";
 
 // intitializing firebase auth
 initFirebase();
 const auth = getAuth();
+const googleProvider = new GoogleAuthProvider();
 const useFirebase = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [name, setName] = useState("");
+  const [user, setUser] = useState({});
+ 
+  // handle google sign in 
+  const googleSignIn = () =>{
+    signInWithPopup(auth, googleProvider)
+    .then(result =>{
+      // const user = result.user;
+      // setUser(user);
+    //  setIsLoggedIn(true);
+    })
+    .catch(error=>{
+      setError(error.message);
+    })
+  }
+  const logOut = () => {
+    signOut(auth)
+    .then(()=>{
+      setUser({});
+    })
+  }
 
   const handleRegistration = (e) => {
     e.preventDefault();
@@ -37,7 +56,6 @@ const useFirebase = () => {
         const user = result.user;
         console.log(user);
         setError("");
-        emailVerification();
         setUsername();
       })
       .catch((error) => {
@@ -50,6 +68,7 @@ const useFirebase = () => {
       .then((result) => {
         // const user = result.user;
         setError("");
+        setUser(result.user)
       })
       .catch((error) => {
         setError(error.message);
@@ -66,12 +85,6 @@ const useFirebase = () => {
     setIsLoggedIn(e.target.checked);
   };
 
-  // email verificatin
-  const emailVerification = () => {
-    sendEmailVerification(auth.currentUser).then(() => {
-      //email verification sent
-    });
-  };
   const handleUserName = (e) => {
     setName(e.target.value);
   };
@@ -87,6 +100,16 @@ const useFirebase = () => {
         // ...
       });
   };
+
+  useEffect(()=>{
+    onAuthStateChanged(auth, user=>{
+      if(user){
+        setUser(user);
+      }else{
+        setUser({})
+      }
+    })
+   },[])
   return {
     error,
     handleRegistration,
@@ -95,6 +118,10 @@ const useFirebase = () => {
     isLoggedIn,
     toggleLogin,
     handleUserName,
+    user,
+    googleSignIn,
+    logOut,
+    name
   };
 };
 

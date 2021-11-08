@@ -9,12 +9,14 @@ const Login =() => {
     handlePasswordChange,
     isLoggedIn,
     toggleLogin,
-    handleUserName} = useFirebase();
+    handleUserName,
+    googleSignIn
+    } = useFirebase();
   
   return (
     <div className="mx-5">
       <form onSubmit={handleRegistration} >
-        <h3 className="text-xl p-2 font-bold">{isLoggedIn ? "Login" :  "Register"}</h3>
+        <h3 className="text-xl p-2 font-bold text-green-400">{isLoggedIn ? "Login" :  "Register"}</h3>
        {!isLoggedIn && <div className="row mb-3">
           <label htmlFor="inputName" className="col-sm-2 col-form-label">Name</label>
           <div className="col-sm-10">
@@ -41,9 +43,9 @@ const Login =() => {
           </div>
           <h4 className="text-danger text-center">{error}</h4>
         </div>
-        <button type="submit" className="btn btn-primary p-1 m-1">{isLoggedIn ? "Login" :  "Register"}</button>
+        <button type="submit" className="px-4 py-1 text-2xl border-1 rounded hover:bg-green-300">{isLoggedIn ? "Login" :  "Register"}</button>
       </form>
-
+      <button onClick={googleSignIn} className="py-1 px-4 border-1 rounded m-1 hover:bg-green-300">Sign In with Google</button>
     </div>
   );
 }
