@@ -46,12 +46,13 @@ const Header = () => {
             </NavLink>
           </li>
           {user.uid && <li>{user.displayName}</li>}
-          {/* {user.uid && <li>{name}</li>} */}
           <li>
-           {user.uid? <NavLink onClick={logOut} to="/login">
-              <span>{signIn}</span>
-                   Log Out
-            </NavLink> : <NavLink to="/login"><span>{signIn}</span> Log In </NavLink>}
+          {user.email && <span style={{ color: 'green' }}>Hello {user.displayName} </span>}
+                {
+                    user.email ?
+                        <button onClick={logOut}>log out</button>
+                        :
+                        <NavLink to="/login">Login</NavLink>}
           </li>
         </ul>
       </div>
