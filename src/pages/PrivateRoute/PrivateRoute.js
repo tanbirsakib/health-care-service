@@ -1,9 +1,13 @@
 import React from 'react';
+import { Spinner } from 'react-bootstrap';
 import { Redirect, Route } from 'react-router';
-import useFirebase from '../../hooks/useFirebase';
+import useAuth from '../../hooks/useAuth';
 
 const PrivateRoute = ({ children, ...rest }) => {
-    const { user } = useFirebase();
+    const { user ,isLoading} = useAuth();
+    if(isLoading) {
+      return  <Spinner className="m-8" animation="border" variant="success" />
+    }
     return (
         <Route
         {...rest}

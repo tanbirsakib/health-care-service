@@ -1,18 +1,21 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+import AuthProvider from "./context/AuthProvider/AuthProvider";
 import HealthProvider from "./context/HealthProvider";
 import About from "./pages/About/About";
 import Faq from "./pages/FAQ/Faq";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
+import PrivateRoute from "./pages/PrivateRoute/PrivateRoute";
 import ServiceDetails from "./pages/ServiceDetails/ServiceDetails";
 import Footer from "./pages/Shared/Footer/Footer";
 import Header from "./pages/Shared/Header/Header";
 function App() {
   return (
     <div className="App">
-      <HealthProvider>
+     <AuthProvider>
+     <HealthProvider>
         <Router>
           <Header></Header>
           <Switch>
@@ -25,12 +28,12 @@ function App() {
             <Route path="/faq">
               <Faq></Faq>
             </Route>
-            <Route path="/service/:id">
+            <PrivateRoute path="/service/:id">
               <ServiceDetails></ServiceDetails>
-            </Route>
-            <Route path="/about">
+            </PrivateRoute>
+            <PrivateRoute path="/about">
               <About></About>
-            </Route>
+            </PrivateRoute>
             <Route path="/login">
               <Login></Login>
             </Route>
@@ -41,6 +44,7 @@ function App() {
           <Footer></Footer>
         </Router>
       </HealthProvider>
+     </AuthProvider>
     </div>
   );
 }

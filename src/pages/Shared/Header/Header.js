@@ -2,21 +2,20 @@ import {
   faCapsules,
   faHome,
   faPen,
-  faSignInAlt,
   faUserSecret
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import useFirebase from "../../../hooks/useFirebase";
+import useAuth from "../../../hooks/useAuth";
 import "./Header.css";
 const logo = <FontAwesomeIcon icon={faCapsules}></FontAwesomeIcon>;
 const home = <FontAwesomeIcon icon={faHome}></FontAwesomeIcon>;
 const customer = <FontAwesomeIcon icon={faUserSecret}></FontAwesomeIcon>;
 const pen = <FontAwesomeIcon icon={faPen}></FontAwesomeIcon>;
-const signIn = <FontAwesomeIcon icon={faSignInAlt}></FontAwesomeIcon>;
+
 const Header = () => {
-  const {user,logOut} = useFirebase()
+  const {user,logOut} = useAuth()
   return (
     <div className="header flex justify-between p-4 bg-white border-b shadow">
     <Link to="/home">

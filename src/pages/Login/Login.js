@@ -1,5 +1,6 @@
 import React from "react";
-import useFirebase from "../../hooks/useFirebase";
+import { useHistory, useLocation } from "react-router";
+import useAuth from "../../hooks/useAuth";
 
 
 const Login =() => {
@@ -10,9 +11,26 @@ const Login =() => {
     isLoggedIn,
     toggleLogin,
     handleUserName,
-    googleSignIn
-    } = useFirebase();
+    googleSignIn,
+    setIsloading
+    } = useAuth();
   
+    const location = useLocation();
+    const redirect_ui = location.state?.from;
+    console.log(redirect_ui)
+    const history = useHistory();
+    const handleGoogleSignIn = ()=>{
+      googleSignIn()
+      .then(result =>{
+        history.push(redirect_ui)
+        // const user = result.user;
+        // setUser(user);
+      //  setIsLoggedIn(true);
+      })
+      .finally(()=>{
+        setIsloading(false);
+      })
+    }
   return (
     <div className="mx-5">
       <form onSubmit={handleRegistration} >
@@ -45,7 +63,7 @@ const Login =() => {
         </div>
         <button type="submit" className="px-4 py-1 text-2xl border-1 rounded hover:bg-green-300">{isLoggedIn ? "Login" :  "Register"}</button>
       </form>
-      <button onClick={googleSignIn} className="py-1 px-4 border-1 rounded m-1 hover:bg-green-300">Sign In with Google</button>
+      <button onClick={handleGoogleSignIn} className="py-1 px-4 border-1 rounded m-1 hover:bg-green-300">Sign In with Google</button>
     </div>
   );
 }
