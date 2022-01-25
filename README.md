@@ -14,6 +14,7 @@ https://health-freak-52a57.web.app/
 
 - I used `fontawesome` for icons.
 
+- Api can be added in future
 - For switch through pages without loading i used `React Router`.
 
 - At last for deployment i used `firebase deploy`
